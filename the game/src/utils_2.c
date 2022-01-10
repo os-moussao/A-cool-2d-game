@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 20:03:22 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 20:06:12 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/10 20:13:05 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	display_map(t_map map)
 {
 	int	i;
 	int	j;
-	
+
 	i = -1;
 	while (++i < map.height)
 	{
