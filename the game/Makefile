@@ -24,7 +24,7 @@ SRC_DIR := src/
 #
 # necessary files
 #
-CFILES := main.c utils.c list_utils.c get_next_line.c
+CFILES := main.c utils.c utils_2.c list_utils.c get_next_line.c
 HFILES := $(INCLUDE)so_long.h
 
 SRC := $(addprefix $(SRC_DIR), $(CFILES))
