@@ -126,10 +126,5 @@ int main(int ac, char **av)
 	t_map	map;
 
 	map = parse_map(get_file(ac, av));
-	for (int i = 0; i < map.height; i++)
-	{
-		for (int j = 0; j < map.width; j++)
-			printf("%c", map.map[i][j]);
-		printf("\n");
-	}
+	display_map(map);
 }
