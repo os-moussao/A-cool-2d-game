@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:11:39 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 19:21:27by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/10 20:10:05 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ typedef struct s_list
 	t_node	*bottom;
 }				t_list;
 
-
 int		ft_strlen(char *str);
 char	*ft_strchar(char *str, char c);
-char    *ft_strstr(char *h, char *n);
-void    ft_puterr(char *error, int use_perr);
+char	*ft_strstr(char *h, char *n);
+void	ft_puterr(char *error, int use_perr);
 void	clear_arr(char **arr);
 void	display_map(t_map map);
 
