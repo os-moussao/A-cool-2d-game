@@ -6,13 +6,13 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 19:40:16by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/10 20:12:15 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int get_file(int ac, char **av)
+int	get_file(int ac, char **av)
 {
 	char	*tmp;
 	int		fd;
@@ -41,7 +41,7 @@ bool	validate_map(t_map map)
 	int		p;
 	int		i;
 	int		j;
-	
+
 	c = 0;
 	e = 0;
 	p = 0;
@@ -54,7 +54,7 @@ bool	validate_map(t_map map)
 			if (!ft_strchar("01CEP", map.map[i][j]) || ((i == 0
 				|| i == map.height - 1 || j == 0 || j == map.width - 1)
 					&& map.map[i][j] != '1'))
-					return (0);
+				return (0);
 			c += map.map[i][j] == 'C';
 			e += map.map[i][j] == 'E';
 			p += map.map[i][j] == 'P';
@@ -68,7 +68,7 @@ t_map	list_to_map(t_list *list)
 	t_map	map;
 	t_node	*tmp;
 	int		i;
-	
+
 	if (list->len < 3 || list->top->width < 3)
 	{
 		clear(list);
@@ -121,7 +121,7 @@ t_map	parse_map(int fd)
 	return (map);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_map	map;
 
