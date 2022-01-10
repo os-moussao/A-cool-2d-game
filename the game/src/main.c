@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 20:12:15 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/10 20:51:07 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,5 @@ int	main(int ac, char **av)
 
 	map = parse_map(get_file(ac, av));
 	display_map(map);
+	clear_arr(map.map);
 }
