@@ -55,6 +55,7 @@ char	*ft_strchar(char *str, char c);
 char    *ft_strstr(char *h, char *n);
 void    ft_puterr(char *error, int use_perr);
 void	clear_arr(char **arr);
+void	display_map(t_map map);
 
 char	*get_next_line(int fd);
 
