@@ -2,3 +2,4 @@ a.out
 *.dSYM
 debug
 so_long
+*.o
