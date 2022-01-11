@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:11:39 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/11 16:39:04 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/11 16:46:17 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ typedef struct s_img
 typedef struct s_assets
 {
 	t_img	wall;
-	t_img	background;
-	t_img	collectible;
+	t_img	bg;
+	t_img	coll;
 	t_img	player;
 	t_img	enemy;
+	t_img	exit;
 }				t_assets;
 
 int			ft_strlen(char *str);
