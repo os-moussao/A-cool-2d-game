@@ -9,6 +9,8 @@ CC := cc
 
 CFLAGS := -Wall -Werror -Wextra
 
+MLX_FLAGS := -lmlx -framework OpenGL -framework AppKit
+
 #
 # rules not to mixed with similar file names
 #
@@ -24,7 +26,7 @@ SRC_DIR := src/
 #
 # necessary files
 #
-CFILES := main.c utils.c utils_2.c list_utils.c get_next_line.c
+CFILES := main.c utils.c utils_2.c list_utils.c get_next_line.c render.c
 HFILES := $(INCLUDE)so_long.h
 
 SRC := $(addprefix $(SRC_DIR), $(CFILES))
@@ -37,8 +39,11 @@ OBJ := $(SRC:.c=.o)
 #
 all: $(NAME)
 
+run: 
+	./so_long map/map2_valid.ber
+
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -o $@ $(OBJ)
 
 %.o: %.c $(HFILES)
 	$(CC) $(CFLAGS) -c $< -I$(INCLUDE) -o $@
