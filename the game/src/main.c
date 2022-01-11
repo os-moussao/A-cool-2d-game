@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 23:50:49 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/11 17:13:45 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,13 @@ t_map	list_to_map(t_list *list)
 		clear(list);
 		ft_puterr(MAP_ERROR, 0);
 	}
-	map.height = list->len;
-	map.width = list->top->width;
-	map.map = malloc((list->len + 1) * sizeof(char *));
+	map.map = malloc(((map.height = list->len) + 1) * sizeof(char *));
 	if (!map.map)
 	{
 		clear(list);
 		ft_puterr(ALLOCATION_FAILED, 0);
 	}
+	map.width = list->top->width;
 	i = 0;
 	tmp = list->bottom;
 	while (tmp)
@@ -89,6 +88,7 @@ t_map	list_to_map(t_list *list)
 		map.map[i++] = tmp->line;
 		tmp = tmp->prev;
 	}
+	map.map[i] = NULL;
 	return (clear(list), map);
 }
 
@@ -126,11 +126,12 @@ int	main(int ac, char **av)
 	t_map		map;
 	t_mlx		mlx;
 	t_assets	assets;
-	
+
 	map = parse_map(get_file(ac, av));
 	display_map(map);
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, map.width * DIM, map.height * DIM, "so_long!");
+	mlx.win = mlx_new_window(mlx.mlx, map.width * DIM,
+			map.height * DIM, "so_long!");
 	assets = load_images(mlx.mlx);
 	render_map(assets, map, mlx);
 	mlx_loop(mlx.mlx);
