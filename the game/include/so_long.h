@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:11:39 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 20:10:05 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/11 16:39:04 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <stdbool.h>
 
 # define BUFFER_SIZE 100000
+
+# define DIM 50
 
 # define ALLOCATION_FAILED "Error\nAllocation failed!\n"
 # define MAP_ERROR "Error\nInvalid map\n"
@@ -49,18 +51,43 @@ typedef struct s_list
 	t_node	*bottom;
 }				t_list;
 
-int		ft_strlen(char *str);
-char	*ft_strchar(char *str, char c);
-char	*ft_strstr(char *h, char *n);
-void	ft_puterr(char *error, int use_perr);
-void	clear_arr(char **arr);
-void	display_map(t_map map);
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+}				t_mlx;
 
-char	*get_next_line(int fd);
+typedef struct s_img
+{
+	void	*img;
+	int		h;
+	int		w;
+}				t_img;
 
-t_list	*new_list(void);
-void	push(t_list *list, char *line);
-void	pop(t_list *list);
-void	clear(t_list *list);
+typedef struct s_assets
+{
+	t_img	wall;
+	t_img	background;
+	t_img	collectible;
+	t_img	player;
+	t_img	enemy;
+}				t_assets;
+
+int			ft_strlen(char *str);
+char		*ft_strchar(char *str, char c);
+char		*ft_strstr(char *h, char *n);
+void		ft_puterr(char *error, int use_perr);
+void		clear_arr(char **arr);
+void		display_map(t_map map);
+
+char		*get_next_line(int fd);
+
+t_list		*new_list(void);
+void		push(t_list *list, char *line);
+void		pop(t_list *list);
+void		clear(t_list *list);
+
+t_assets	load_images(void *mlx);
+void		render_map(t_assets assets, t_map map, t_mlx mlx);
 
 #endif
