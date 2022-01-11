@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:11:39 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/11 16:46:17 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/11 18:31:00 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,13 @@ typedef struct s_assets
 	t_img	exit;
 }				t_assets;
 
+typedef struct s_params
+{
+	t_assets	assets;
+	t_mlx		mlx;
+	t_map		map;
+}				t_params;
+
 int			ft_strlen(char *str);
 char		*ft_strchar(char *str, char c);
 char		*ft_strstr(char *h, char *n);
@@ -89,6 +96,6 @@ void		pop(t_list *list);
 void		clear(t_list *list);
 
 t_assets	load_images(void *mlx);
-void		render_map(t_assets assets, t_map map, t_mlx mlx);
+int			render_map(t_params *params);
 
 #endif
