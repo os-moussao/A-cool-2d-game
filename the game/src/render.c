@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 23:04:17 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/11 16:57:44 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:23:53 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,41 @@ t_assets	load_images(void *mlx)
 			&assets.enemy.w, &assets.enemy.h);
 	assets.coll.img = mlx_xpm_file_to_image(mlx, "./assets/collectible.xpm",
 			&assets.coll.w, &assets.coll.h);
+	assets.exit.img = mlx_xpm_file_to_image(mlx, "./assets/exit.xpm",
+			&assets.exit.w, &assets.exit.h);
 	return (assets);
 }
 
-void	render_map(t_assets assets, t_map map, t_mlx mlx)
+void	render_img(t_params *params, int i, int j)
+{
+	if (params->map.map[i][j] == '0')
+		mlx_put_image_to_window(params->mlx.mlx, params->mlx.win,
+			params->assets.bg.img, j * DIM, i * DIM);
+	else if (params->map.map[i][j] == '1')
+		mlx_put_image_to_window(params->mlx.mlx, params->mlx.win,
+			params->assets.wall.img, j * DIM, i * DIM);
+	else if (params->map.map[i][j] == 'C')
+		mlx_put_image_to_window(params->mlx.mlx, params->mlx.win,
+			params->assets.coll.img, j * DIM, i * DIM);
+	else if (params->map.map[i][j] == 'P')
+		mlx_put_image_to_window(params->mlx.mlx, params->mlx.win,
+			params->assets.player.img, j * DIM, i * DIM);
+	else if (params->map.map[i][j] == 'E')
+		mlx_put_image_to_window(params->mlx.mlx, params->mlx.win,
+			params->assets.exit.img, j * DIM, i * DIM);
+}
+
+int	render_map(t_params *params)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (++i < map.height)
+	while (++i < params->map.height)
 	{
 		j = -1;
-		while (++j < map.width)
-		{
-			mlx_put_image_to_window(mlx.mlx, mlx.win,
-				assets.bg.img, j * DIM, i * DIM);
-			if (map.map[i][j] == '1')
-				mlx_put_image_to_window(mlx.mlx, mlx.win,
-					assets.wall.img, j * DIM, i * DIM);
-			else if (map.map[i][j] == 'C')
-				mlx_put_image_to_window(mlx.mlx, mlx.win,
-					assets.coll.img, j * DIM, i * DIM);
-			else if (map.map[i][j] == 'P')
-				mlx_put_image_to_window(mlx.mlx, mlx.win,
-					assets.player.img, j * DIM, i * DIM);
-			else if (map.map[i][j] == 'E')
-				mlx_put_image_to_window(mlx.mlx, mlx.win,
-					assets.enemy.img, j * DIM, i * DIM);
-		}
+		while (++j < params->map.width)
+			render_img(params, i, j);
 	}
+	return (0);
 }
