@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 20:51:07 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/10 23:50:49 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,16 @@ t_map	parse_map(int fd)
 
 int	main(int ac, char **av)
 {
-	t_map	map;
-
+	t_map		map;
+	t_mlx		mlx;
+	t_assets	assets;
+	
 	map = parse_map(get_file(ac, av));
 	display_map(map);
+	mlx.mlx = mlx_init();
+	mlx.win = mlx_new_window(mlx.mlx, map.width * DIM, map.height * DIM, "so_long!");
+	assets = load_images(mlx.mlx);
+	render_map(assets, map, mlx);
+	mlx_loop(mlx.mlx);
 	clear_arr(map.map);
 }
