@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:11:39 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/11 18:31:00 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/11 22:52:39 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@
 
 # define ALLOCATION_FAILED "Error\nAllocation failed!\n"
 # define MAP_ERROR "Error\nInvalid map\n"
+
+# define X_EVENT_KEY_PRESS		2
+# define X_EVENT_DESTROY		17
+# define KEY_ESC				53
+# define KEY_A					0
+# define KEY_S					1
+# define KEY_D					2
+# define KEY_W					13
 
 typedef struct s_map
 {
@@ -97,5 +105,8 @@ void		clear(t_list *list);
 
 t_assets	load_images(void *mlx);
 int			render_map(t_params *params);
+
+int			key_press(int key, t_params *params);
+int			close_prog(t_params *params);
 
 #endif
