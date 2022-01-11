@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/11 22:07:25 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/11 22:41:53 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ int	main(int ac, char **av)
 	params.map = map;
 	params.mlx = mlx;
 	render_map(&params);
-	// mlx_hook(mlx.win, 2, 0, &change, &params);
-	// mlx_loop_hook(mlx.mlx, render_map, &params);
+	mlx_hook(mlx.win, X_EVENT_KEY_PRESS, 0, key_press, &params);
+	mlx_hook(mlx.win, X_EVENT_DESTROY, 0, close_prog, &params);
 	mlx_loop(mlx.mlx);
 	clear_arr(map.map);
 }
