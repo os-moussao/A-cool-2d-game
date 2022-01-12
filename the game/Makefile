@@ -39,6 +39,8 @@ OBJ := $(SRC:.c=.o)
 #
 all: $(NAME)
 
+rr: re clean run
+
 run: 
 	./so_long map/map2_valid.ber
 
