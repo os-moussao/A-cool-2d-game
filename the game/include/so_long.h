@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:11:39 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/11 22:52:39 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/12 18:59:58 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,19 @@
 # define KEY_D					2
 # define KEY_W					13
 
+typedef struct s_pos
+{
+	int	i;
+	int	j;
+}				t_pos;
+
 typedef struct s_map
 {
 	char	**map;
 	int		height;
 	int		width;
+	int		coll;
+	t_pos	player_pos;
 }				t_map;
 
 typedef struct s_node
@@ -103,6 +111,7 @@ void		push(t_list *list, char *line);
 void		pop(t_list *list);
 void		clear(t_list *list);
 
+t_pos		get_player_pos(t_map map);
 t_assets	load_images(void *mlx);
 int			render_map(t_params *params);
 
