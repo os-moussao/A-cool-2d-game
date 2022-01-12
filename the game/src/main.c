@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/11 22:41:53 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/12 19:15:37 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ int	get_file(int ac, char **av)
 	return (fd);
 }
 
-bool	validate_map(t_map map)
+int	validate_map(t_map map)
 {
-	int		c;
 	int		e;
 	int		p;
 	int		i;
 	int		j;
 
-	c = 0;
+	map.coll = 0;
 	e = 0;
 	p = 0;
 	i = -1;
@@ -55,12 +54,12 @@ bool	validate_map(t_map map)
 				|| i == map.height - 1 || j == 0 || j == map.width - 1)
 					&& map.map[i][j] != '1'))
 				return (0);
-			c += map.map[i][j] == 'C';
+			map.coll += map.map[i][j] == 'C';
 			e += map.map[i][j] == 'E';
 			p += map.map[i][j] == 'P';
 		}
 	}
-	return (c >= 1 && e >= 1 && p == 1);
+	return (map.coll >= 1 && e >= 1 && p == 1);
 }
 
 t_map	list_to_map(t_list *list)
@@ -129,7 +128,7 @@ int	main(int ac, char **av)
 	t_params	params;
 
 	map = parse_map(get_file(ac, av));
-	display_map(map);
+	map.player_pos = get_player_pos(map);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, map.width * DIM,
 			map.height * DIM, "so_long!");
@@ -141,5 +140,4 @@ int	main(int ac, char **av)
 	mlx_hook(mlx.win, X_EVENT_KEY_PRESS, 0, key_press, &params);
 	mlx_hook(mlx.win, X_EVENT_DESTROY, 0, close_prog, &params);
 	mlx_loop(mlx.mlx);
-	clear_arr(map.map);
 }
