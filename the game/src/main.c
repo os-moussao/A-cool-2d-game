@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/12 19:26:12 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/12 20:42:43 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_file(int ac, char **av)
 	tmp = ft_strstr(av[1], ".ber");
 	if (!tmp || tmp[4])
 	{
-		write(2, "Error: enter a .ber file\n", 25);
+		write(2, "Error\nEnter a .ber file\n", 25);
 		exit(1);
 	}
 	fd = open(av[1], O_RDONLY);

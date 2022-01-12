@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:11:15 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/10 20:18:21 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/12 20:42:09 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ char	*ft_strstr(char *h, char *n)
 void	ft_puterr(char *error, int use_perr)
 {
 	if (use_perr)
+	{
+		write(2, "Error\n", 6);
 		perror(error);
+	}
 	else
 	{
 		while (*error)
