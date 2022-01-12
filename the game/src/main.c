@@ -6,7 +6,7 @@
 /*   By: omoussao <omoussao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 22:07:43 by omoussao          #+#    #+#             */
-/*   Updated: 2022/01/12 19:15:37 by omoussao         ###   ########.fr       */
+/*   Updated: 2022/01/12 19:26:12 by omoussao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,32 @@ int	get_file(int ac, char **av)
 	return (fd);
 }
 
-int	validate_map(t_map map)
+int	validate_map(t_map *map)
 {
 	int		e;
 	int		p;
 	int		i;
 	int		j;
 
-	map.coll = 0;
+	map->coll = 0;
 	e = 0;
 	p = 0;
 	i = -1;
-	while (++i < map.height)
+	while (++i < map->height)
 	{
 		j = -1;
-		while (++j < map.width)
+		while (++j < map->width)
 		{
-			if (!ft_strchar("01CEP", map.map[i][j]) || ((i == 0
-				|| i == map.height - 1 || j == 0 || j == map.width - 1)
-					&& map.map[i][j] != '1'))
+			if (!ft_strchar("01CEP", map->map[i][j]) || ((i == 0
+				|| i == map->height - 1 || j == 0 || j == map->width - 1)
+					&& map->map[i][j] != '1'))
 				return (0);
-			map.coll += map.map[i][j] == 'C';
-			e += map.map[i][j] == 'E';
-			p += map.map[i][j] == 'P';
+			map->coll += map->map[i][j] == 'C';
+			e += map->map[i][j] == 'E';
+			p += map->map[i][j] == 'P';
 		}
 	}
-	return (map.coll >= 1 && e >= 1 && p == 1);
+	return (map->coll >= 1 && e >= 1 && p == 1);
 }
 
 t_map	list_to_map(t_list *list)
@@ -112,7 +112,7 @@ t_map	parse_map(int fd)
 		line = get_next_line(fd);
 	}
 	map = list_to_map(list);
-	if (!validate_map(map))
+	if (!validate_map(&map))
 	{
 		clear_arr(map.map);
 		ft_puterr(MAP_ERROR, 0);
